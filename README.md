@@ -30,3 +30,8 @@ I will most likely not use React and make the game with JS, HTML and CSS. One of
 - add images for blocks
 
 ###Music/extra Features (day 3)
+- turn counter
+- various levels
+- smooth out gameplay
+- timer?
+- links to my pages
