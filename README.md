@@ -13,7 +13,7 @@ This game involves having many blocks on a board. The goal of the game is to mov
 - music
 - instructions
 
-I will most likely not use React and make the game with JS, HTML and CSS. One of the biggest challenges I foresee is utilizing blocks of different lengths. This might be able to be solved by spawning the blocks on one space, but assigning the adjacent spaces as filled.
+I will most likely use React to make the game. A couple of the biggest challenges I foresee are utilizing blocks of different lengths and using blocks that face different directions. This might be able to be solved by spawning the blocks on one space, but assigning the adjacent spaces as filled.
 
 
 ##Timeline

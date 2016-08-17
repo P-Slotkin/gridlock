@@ -15,20 +15,19 @@ Board.prototype.generateBoard = function () {
 };
 
 Board.prototype.setupLevel = function(cars) {
-  let that = this;
   cars.forEach((car) => {
     if (car.direction === "up") {
-      that.grid[car.pos[0]][car.pos[1]] = car;
-      let lengthCounter = 0;
-      while (lengthCounter < car.size - 1) {
-        that.grid[car.pos[0 + lengthCounter]][car.pos[1]] = 'x';
+      this.grid[car.pos[0]][car.pos[1]] = car;
+      let lengthCounter = 1;
+      while (lengthCounter < car.size) {
+        this.grid[car.pos[0] + lengthCounter][car.pos[1]] = 'x';
         lengthCounter++;
       }
     } else if (car.direction === "right") {
-      that.grid[car.pos[0]][car.pos[1]] = car;
-      let lengthCounter = 0;
-      while (lengthCounter < car.size - 1) {
-        that.grid[car.pos[0]][car.pos[1 + lengthCounter]] = 'x';
+      this.grid[car.pos[0]][car.pos[1]] = car;
+      let lengthCounter = 1;
+      while (lengthCounter < car.size) {
+        this.grid[car.pos[0]][car.pos[1] + lengthCounter] = 'x';
         lengthCounter++;
       }
     }

@@ -1,6 +1,4 @@
-"use strict";
-
-const Game = require('./components/game');
+const Game = require('./components/game.jsx');
 const React = require('react');
 const ReactDOM = require('react-dom');
 

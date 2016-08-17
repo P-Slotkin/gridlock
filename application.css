@@ -1,0 +1,29 @@
+.game-container {
+  display: inline-block;;
+  width: 600px;
+  height: 600px;
+  border: 1px solid rgba(0, 0, 0, .3);
+}
+
+.game-container div {
+  float:left;
+  width: 98px;
+  height: 98px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
+
+.filled {
+  background-color: blue;
+}
+
+.car {
+  background-color: red;
+}
+
+.downarrow3 img {
+  margin-bottom: -400px;
+}

@@ -1,5 +1,3 @@
-"use strict";
-
 module.exports = {
   context: __dirname,
   entry: "./react_gridlock.jsx",
@@ -21,5 +19,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
-  }
+  },
+  devtool: 'source-map'
 };

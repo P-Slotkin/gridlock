@@ -4,19 +4,28 @@
   "description": "## Overview",
   "main": "application.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-core": "^6.9.1",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.5.0",
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
-    "webpack": "^1.12.6"
+    "webpack": "^1.13.1"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/P-Slotkin/gridlock.git"
+  },
+  "bugs": {
+    "url": "https://github.com/P-Slotkin/gridlock/issues"
+  },
+  "homepage": "https://github.com/P-Slotkin/gridlock#readme"
 }
