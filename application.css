@@ -1,5 +1,6 @@
 .game-container {
-  display: inline-block;;
+  display: inline-block;
+  position: relative;
   width: 600px;
   height: 600px;
   border: 1px solid rgba(0, 0, 0, .3);
@@ -17,13 +18,130 @@
 }
 
 .filled {
-  background-color: blue;
+  height: 98px !important;
+  width: 98px !important;
+  z-index: 4 !important;
+  position: relative;
 }
 
-.car {
-  background-color: red;
+.car-up-3:focus {
+
 }
+
+.car-up-2:focus {
+
+}
+
+
+
+.car-right-3:focus {
+
+}
+
+.car-right-2:focus {
+
+}
+
+.square:focus {
+
+}
+
+.square div:focus{
+
+}
+
+.square div {
+  outline: 0 !important;
+  border: 0px !important;
+}
+
+/*.car-right-2 img{
+  position: absolute;
+  height: 100px;
+  width: 200px;
+  z-index: 1 !important;
+}*/
 
 .downarrow3 img {
-  margin-bottom: -400px;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  padding-left: 7px;
+  margin-top: 304px;
+}
+
+.downarrow3 {
+  width: 98px;
+  height: 400px;
+  z-index: 3;
+}
+
+.downarrow2 img {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  padding-left: 7px;
+  margin-top: 204px;
+}
+
+.downarrow2 {
+  width: 98px;
+  height: 300px;
+  z-index: 3;
+}
+
+.uparrow img {
+  width: 80px;
+  height: 80px;
+  padding-left: 7px;
+}
+
+.uparrow {
+  position: absolute;
+  margin-top: -46px;
+  width: 98px;
+  height: 98px;
+  border: 0px !important;
+}
+
+.rightarrow3 img {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  padding-top: 7px;
+  margin-left: 304px;
+}
+
+.rightarrow3 {
+  height: 100px;
+  width: 400px;
+  z-index: 3;
+}
+
+.rightarrow2 img {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  padding-top: 7px;
+  margin-left: 204px;
+}
+
+.rightarrow2 {
+  height: 100px;
+  width: 300px;
+  z-index: 3;
+}
+
+.leftarrow img {
+  width: 80px;
+  height: 80px;
+  padding-top: 7px;
+}
+
+.leftarrow {
+  position: absolute;
+  margin-left: -46px;
+  width: 98px;
+  height: 98px;
+  border: 0px !important;
 }

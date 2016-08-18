@@ -11,20 +11,20 @@ const Game = React.createClass({
   },
 
   restartLevel() {
-    this.setState({ board: new Gridlock(Levels[this.state.level]), cars: Levels[this.state.levels] });
+    this.setState({ board: new Gridlock(Levels[this.state.level]), cars: Levels[this.state.level] });
   },
 
   nextLevel() {
     let nextLevel = this.state.level + 1;
     if (this.state.level < 20) {
-      this.setState({ board: new Gridlock(Levels[nextLevel]), level: nextLevel, cars: Levels[this.state.levels] });
+      this.setState({ board: new Gridlock(Levels[nextLevel]), level: nextLevel, cars: Levels[nextLevel] });
     }
   },
 
   previousLevel() {
     let previousLevel = this.state.level - 1;
     if (this.state.level > 1) {
-      this.setState({ board: new Gridlock(Levels[previousLevel]), level: previousLevel, cars: Levels[this.state.levels] });
+      this.setState({ board: new Gridlock(Levels[previousLevel]), level: previousLevel, cars: Levels[previousLevel] });
     }
   },
 
@@ -33,7 +33,6 @@ const Game = React.createClass({
       return car.color !== color;
     });
     carsMissingOne.push(newCar);
-    console.log(carsMissingOne);
     this.setState({ cars: carsMissingOne });
     this.updateBoard();
   },
@@ -44,11 +43,12 @@ const Game = React.createClass({
       return row.map((space) => {
         if (space === '-') {
           return <div className='square empty'/>;
-        } else if (space === 'x') {
-          return <div className='square filled pointer'/>;
-        } else {
+        } else if (space instanceof Object) {
           let car = <ReactCar carMoved={that.carMoved} car={space} board={that.state.board} color={space.color} size={space.size} pos={space.pos} dir={space.direction}/>;
           return car;
+        } else if (space.length > 1) {
+          let color = {backgroundColor: `${space}`}
+          return <div className="square filled pointer" style={color}/>;
         }
       });
     });
@@ -59,14 +59,18 @@ const Game = React.createClass({
     if (this.state.cars.length === 0) {
       return;
     } else {
-      this.setState({ board: new Gridlock(this.state.cars) });
+      let newBoard = new Gridlock(this.state.cars)
+      this.setState({ board: newBoard });
+      if (newBoard.wonLevel()){
+        this.nextLevel();
+      }
     }
   },
 
   render() {
-    if (this.state.board.wonLevel()){
-      this.nextLevel();
-    }
+    // if (this.state.board.wonLevel()){
+    //   this.nextLevel();
+    // }
     return (
       <div className='page-container'>
         <div className='button pointer' onClick={this.restartLevel}>Restart</div>

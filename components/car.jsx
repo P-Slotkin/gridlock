@@ -4,9 +4,7 @@ const Car = require('../car.js');
 const ReactCar = React.createClass({
 
   getInitialState() {
-    let posX = this.props.pos[0];
-    let posY = this.props.pos[1];
-    return({ selected: false, posX: posX, posY: posY });
+    return({ selected: false });
   },
 
   toggleSelected() {
@@ -27,73 +25,67 @@ const ReactCar = React.createClass({
 
   forward(){
     const car = this.props.car;
-    console.log(car);
     if (this.props.dir === "up") {
-      this.setState({ posX: this.state.posX + 1 });
       car.pos = [this.props.pos[0] + 1, this.props.pos[1]];
       this.props.carMoved(car.color, car);
     } else if (this.props.dir === "right") {
       let newY = this.state.posY + 1;
       car.pos = [this.props.pos[0], this.props.pos[1] + 1];
       this.props.carMoved(car.color, car);
-      this.setState({ posY: newY });
     }
   },
 
   backward(){
     const car = this.props.car;
-    console.log('backwards');
     if (this.props.dir === "up" ) {
       car.pos = [this.props.pos[0] - 1, this.props.pos[1]];
       this.props.carMoved(car.color, car);
-      this.setState({ posX: this.state.posX - 1 });
     } else if (this.props.dir === "right") {
       car.pos = [this.props.pos[0], this.props.pos[1] - 1];
       this.props.carMoved(car.color, car);
-      this.setState({ posY: this.state.posY - 1 });
     }
   },
 
   showDownArrow() {
-    let position = [this.state.posX, this.state.posY];
+    let position = this.props.pos;
     let size = this.props.size;
     if (this.inBounds(position[0] + size) &&
-        this.props.board.grid[position[0] + size + 1][position[1]] === '-') {
-      return (<div onClick={this.forward} className={`downarrow${size}`}>
-        <img className={`pointer downarrow${size}`}  src='../images/arrowdown.jpg' />
+        (this.props.board.grid[position[0] + size][position[1]] === '-')) {
+      return (<div className={`downarrow${size}`}>
+        <div className={`pointer downarrow${size}-image`}> <img  onClick={this.forward} src='../images/arrowdown.jpg' /> </div>
       </div>);
     }
   },
 
   showUpArrow() {
-    let position = [this.state.posX, this.state.posY];
+    let position = this.props.car.pos;
     let size = this.props.size;
     if (this.inBounds(position[0] - 1) &&
       this.props.board.grid[position[0] - 1][position[1]] === '-') {
-      return (<div className='uparrow'>
-        <img className='pointer' onClick={this.backward} src='../images/arrowup.jpg' />
+      return (<div className={`uparrow`}>
+        <img className={`pointer uparrow`} onClick={this.backward} src='../images/arrowup.jpg' />
       </div>);
     }
   },
 
   showRightArrow() {
-    let position = [this.state.posX, this.state.posY];
+    let position = this.props.car.pos;
     let size = this.props.size;
     if (this.inBounds(position[1] + size) &&
-        this.props.board.grid[position[0]][position[1] + size + 1] === '-') {
-      return (<div className={`rightarrow ${this.props.size} pointer`}>
-        <img className='pointer' onClick={this.forward} src='../images/arrowright.jpg' />
+        this.props.board.grid[position[0]][position[1] + size] === '-') {
+      return (<div className={`rightarrow${this.props.size} pointer`}>
+        <img className={`pointer rightarrow${size}-image`} onClick={this.forward} src='../images/arrowright.jpg' />
       </div>);
     }
   },
 
   showLeftArrow() {
-    let position = [this.state.posX, this.state.posY];
+    let position = this.props.car.pos;
     let size = this.props.size;
     if (this.inBounds(position[1] - 1) &&
         this.props.board.grid[position[0]][position[1] - 1] === '-') {
-      return (<div className={`leftarrow ${this.props.size} pointer`}>
-        <img className='pointer' onClick={this.backward} src='../images/arrowleft.jpg' />
+      return (<div className={`leftarrow pointer`}>
+        <img className='pointer leftarrow' onClick={this.backward} src='../images/arrowleft.jpg' />
       </div>);
     }
   },
@@ -119,8 +111,17 @@ const ReactCar = React.createClass({
   },
 
   render: function() {
+    let color = {backgroundColor: this.props.car.color};
+    let image = `../images/${this.props.car.color}.jpg`
+    // let size = this.props.car.size * 100;
+    // let direction;
+    // if (this.props.car.direction === "up") {
+    //   direction = {background-color:color,height:`${size}px`,width: '100px'};
+    // } else {
+    //   direction = {background-color:color,height:`100px`,width:`${size}px`;}
+    // }
     return (
-      <div className="square car pointer" onClick={this.toggleSelected}>
+      <div className={`square car-${this.props.car.direction}-${this.props.car.size} pointer `} style={color} onClick={this.toggleSelected}>
         {this.showSelected()}
       </div>
     );

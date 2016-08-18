@@ -20,14 +20,14 @@ Board.prototype.setupLevel = function(cars) {
       this.grid[car.pos[0]][car.pos[1]] = car;
       let lengthCounter = 1;
       while (lengthCounter < car.size) {
-        this.grid[car.pos[0] + lengthCounter][car.pos[1]] = 'x';
+        this.grid[car.pos[0] + lengthCounter][car.pos[1]] = `${car.color}`;
         lengthCounter++;
       }
     } else if (car.direction === "right") {
       this.grid[car.pos[0]][car.pos[1]] = car;
       let lengthCounter = 1;
       while (lengthCounter < car.size) {
-        this.grid[car.pos[0]][car.pos[1] + lengthCounter] = 'x';
+        this.grid[car.pos[0]][car.pos[1] + lengthCounter] = `${car.color}`;
         lengthCounter++;
       }
     }
