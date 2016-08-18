@@ -1,9 +1,25 @@
 .game-container {
+  background-color: #fafafa;
   display: inline-block;
   position: relative;
   width: 600px;
   height: 600px;
   border: 1px solid rgba(0, 0, 0, .3);
+}
+
+.game-outline {
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+  height: 0px;
+  background-color: #E4F5FF;
+  justify-content: center;
+}
+
+.page-container {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .game-container div {
@@ -17,6 +33,99 @@
   cursor: pointer;
 }
 
+.button-headers {
+  padding-top: 32px;
+  height: 75px;
+  width: 600px;
+  font-family: helvetica;
+  font-size: 60px;
+  color: #1C30CE;
+}
+
+.level-head {
+  padding-top: 8px;
+  padding-left: 18px;
+}
+
+.button-container {
+  background-color: #fafafa;
+  width: 600px;
+  height: 75px;
+}
+
+.button-left h3 {
+  margin: 12px;
+  margin-top: 6px;
+  font-size: 50px;
+  color: red;
+}
+
+.button-left h4 {
+  margin: 12px;
+}
+
+.button-left {
+  float: left;
+  height: 75px;
+}
+
+.button-left img {
+  height: 75px;
+  width: auto;
+}
+
+.button-right {
+  height: 75px;
+  width: auto;
+}
+
+.restart img {
+  height: 75px;
+  width: auto;
+  border-radius: 50%;
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+  transition: transform .8s ease-in-out;
+}
+.restart img:hover {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.next img{
+  transition: height .2s ease;
+  transition: padding-top .2s ease;
+}
+
+.next {
+  height: 75px;
+  width: 80px;
+}
+
+.next:hover img{
+  height: 60px;
+  padding-top: 5px;
+}
+
+.previous img{
+  float: right;
+  transition: height .2s ease;
+  transition: padding-top .2s ease;
+}
+
+.previous {
+  height: 75px;
+  width: 80px;
+}
+
+.previous:hover img{
+  height: 60px;
+  padding-top: 5px;
+}
+
+.button-right {
+  float: right;
+}
+
 .filled {
   height: 98px !important;
   width: 98px !important;
@@ -24,30 +133,12 @@
   position: relative;
 }
 
-.car-up-3:focus {
-
-}
-
-.car-up-2:focus {
-
-}
-
-
-
-.car-right-3:focus {
-
-}
-
-.car-right-2:focus {
-
-}
-
-.square:focus {
-
-}
-
-.square div:focus{
-
+.car-board-container{
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin-top: -605px;
+  margin-left: 1px;
 }
 
 .square div {
@@ -55,18 +146,15 @@
   border: 0px !important;
 }
 
-/*.car-right-2 img{
+.square-car {
   position: absolute;
-  height: 100px;
-  width: 200px;
-  z-index: 1 !important;
-}*/
+}
 
 .downarrow3 img {
   position: absolute;
   width: 80px;
   height: 80px;
-  padding-left: 7px;
+  padding-left: 10px;
   margin-top: 304px;
 }
 
@@ -80,7 +168,7 @@
   position: absolute;
   width: 80px;
   height: 80px;
-  padding-left: 7px;
+  padding-left: 10px;
   margin-top: 204px;
 }
 
@@ -93,7 +181,7 @@
 .uparrow img {
   width: 80px;
   height: 80px;
-  padding-left: 7px;
+  padding-left: 10px;
 }
 
 .uparrow {
@@ -108,7 +196,7 @@
   position: absolute;
   width: 80px;
   height: 80px;
-  padding-top: 7px;
+  padding-top: 10px;
   margin-left: 304px;
 }
 
@@ -122,7 +210,7 @@
   position: absolute;
   width: 80px;
   height: 80px;
-  padding-top: 7px;
+  padding-top: 10px;
   margin-left: 204px;
 }
 
@@ -135,7 +223,7 @@
 .leftarrow img {
   width: 80px;
   height: 80px;
-  padding-top: 7px;
+  padding-top: 10px;
 }
 
 .leftarrow {

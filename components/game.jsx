@@ -6,29 +6,43 @@ const ReactCar = require('./car.jsx');
 
 const Game = React.createClass({
   getInitialState() {
-    const board = new Gridlock(Levels[1]);
-    return ({ level: 1, board: board, cars: Levels[1]});
+    let cars = this.makeCars(Levels[1]);
+    const carBoard = new Gridlock(cars);
+    const backGroundBoard = new Gridlock([]);
+    this.moveCounter = 0;
+    return ({ level: 1, carBoard: carBoard, board: backGroundBoard, cars: cars });
+  },
+
+  makeCars(blueprint) {
+    return blueprint.map((attrs) => { return new Car({ color: attrs[0], size: attrs[1], pos: attrs[2], direction: attrs[3] }); });
   },
 
   restartLevel() {
-    this.setState({ board: new Gridlock(Levels[this.state.level]), cars: Levels[this.state.level] });
+    this.moveCounter = 0;
+    let cars = this.makeCars(Levels[this.state.level]);
+    this.setState({ carBoard: new Gridlock(cars), cars: cars });
   },
 
   nextLevel() {
+    this.moveCounter = 0;
     let nextLevel = this.state.level + 1;
+    let cars = this.makeCars(Levels[nextLevel]);
     if (this.state.level < 20) {
-      this.setState({ board: new Gridlock(Levels[nextLevel]), level: nextLevel, cars: Levels[nextLevel] });
+      this.setState({ carBoard: new Gridlock(cars), level: nextLevel, cars: cars });
     }
   },
 
   previousLevel() {
+    this.moveCounter = 0;
     let previousLevel = this.state.level - 1;
+    let cars = this.makeCars(Levels[previousLevel]);
     if (this.state.level > 1) {
-      this.setState({ board: new Gridlock(Levels[previousLevel]), level: previousLevel, cars: Levels[previousLevel] });
+      this.setState({ carBoard: new Gridlock(cars), level: previousLevel, cars: cars });
     }
   },
 
   carMoved(color, newCar){
+    this.moveCounter++;
     let carsMissingOne = this.state.cars.filter((car) => {
       return car.color !== color;
     });
@@ -37,30 +51,39 @@ const Game = React.createClass({
     this.updateBoard();
   },
 
-  renderBoard() {
-    let that = this;
+  renderBackGroundBoard() {
     let htmlBoard = this.state.board.grid.map((row) => {
       return row.map((space) => {
         if (space === '-') {
           return <div className='square empty'/>;
-        } else if (space instanceof Object) {
-          let car = <ReactCar carMoved={that.carMoved} car={space} board={that.state.board} color={space.color} size={space.size} pos={space.pos} dir={space.direction}/>;
-          return car;
-        } else if (space.length > 1) {
-          let color = {backgroundColor: `${space}`}
-          return <div className="square filled pointer" style={color}/>;
         }
       });
     });
     return htmlBoard;
   },
 
+  renderCarBoard() {
+    let that = this;
+    let carBoard = this.state.carBoard.grid.map((row) => {
+      return row.map((space) => {
+        if (space instanceof Object) {
+          return <ReactCar carMoved={that.carMoved} car={space} board={that.state.carBoard} color={space.color} size={space.size} pos={space.pos} dir={space.direction}/>;
+        }
+      });
+    });
+    return (
+      <div className="car-board-container">
+        {carBoard}
+      </div>
+    );
+  },
+
   updateBoard() {
     if (this.state.cars.length === 0) {
       return;
     } else {
-      let newBoard = new Gridlock(this.state.cars)
-      this.setState({ board: newBoard });
+      let newBoard = new Gridlock(this.state.cars);
+      this.setState({ carBoard: newBoard });
       if (newBoard.wonLevel()){
         this.nextLevel();
       }
@@ -68,16 +91,27 @@ const Game = React.createClass({
   },
 
   render() {
-    // if (this.state.board.wonLevel()){
-    //   this.nextLevel();
-    // }
     return (
-      <div className='page-container'>
-        <div className='button pointer' onClick={this.restartLevel}>Restart</div>
-        <div className='button pointer' onClick={this.previousLevel}>Previous</div>
-        <div className='button pointer' onClick={this.nextLevel}>Next</div>
-        <div className='game-container'>
-          {this.renderBoard()}
+      <div className='game-outline'>
+        <div className='page-container'>
+          <div className='button-headers'>
+            <div className='button-headers level-head'>LEVEL</div>
+          </div>
+          <div className='button-container'>
+            <div className='button-left previous pointer' onClick={this.previousLevel}><img src="../images/pointerleft.jpg"/></div>
+            <div className='button-left level'>
+              <h3>{this.state.level}</h3>
+            </div>
+            <div className='button-left next pointer' onClick={this.nextLevel}><img src="../images/pointerright.jpg"/></div>
+            <div className='button-left move-counter'>
+              <h4>{this.moveCounter}</h4>
+            </div>
+            <div className='button-right restart pointer' onClick={this.restartLevel}><img src="../images/redo.jpg"/></div>
+          </div>
+          <div className='game-container'>
+            {this.renderBackGroundBoard()}
+          </div>
+          {this.renderCarBoard()}
         </div>
       </div>
     );

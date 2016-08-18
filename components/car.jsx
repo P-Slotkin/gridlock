@@ -7,13 +7,35 @@ const ReactCar = React.createClass({
     return({ selected: false });
   },
 
-  toggleSelected() {
+  componentDidMount() {
+    this.token = window.addEventListener('click', this.toggleOff);
+  },
+
+  // componentWillUnmount() {
+  //   this.token.remove();
+  // },
+
+  toggleOff(e){
+    console.log(e.target.attributes.color);
+    if (this.state.selected && !e.target.attributes.color) {
+      return this.setState({ selected: false });
+    } else if (this.state.selected && e.target.attributes.color.nodeValue !== this.props.car.color) {
+      return this.setState({ selected: false });
+    }
+    // if (this.state.selected) {
+    //   if (e.target.attributes.color && e.target.attributes.color.nodeValue !== this.props.car.color)
+    //   this.setState({ selected: false });
+    // }
+  },
+
+  toggleSelected(e) {
     if (this.state.selected) {
       this.setState({ selected: false });
     } else {
       this.setState({ selected: true });
     }
   },
+
 
   inBounds(n) {
     if (n < 6 && n >= 0) {
@@ -25,11 +47,11 @@ const ReactCar = React.createClass({
 
   forward(){
     const car = this.props.car;
+    this.token.remove();
     if (this.props.dir === "up") {
       car.pos = [this.props.pos[0] + 1, this.props.pos[1]];
       this.props.carMoved(car.color, car);
     } else if (this.props.dir === "right") {
-      let newY = this.state.posY + 1;
       car.pos = [this.props.pos[0], this.props.pos[1] + 1];
       this.props.carMoved(car.color, car);
     }
@@ -37,6 +59,7 @@ const ReactCar = React.createClass({
 
   backward(){
     const car = this.props.car;
+    this.token.remove();
     if (this.props.dir === "up" ) {
       car.pos = [this.props.pos[0] - 1, this.props.pos[1]];
       this.props.carMoved(car.color, car);
@@ -111,17 +134,18 @@ const ReactCar = React.createClass({
   },
 
   render: function() {
-    let color = {backgroundColor: this.props.car.color};
-    let image = `../images/${this.props.car.color}.jpg`
-    // let size = this.props.car.size * 100;
-    // let direction;
-    // if (this.props.car.direction === "up") {
-    //   direction = {background-color:color,height:`${size}px`,width: '100px'};
-    // } else {
-    //   direction = {background-color:color,height:`100px`,width:`${size}px`;}
-    // }
+    let color = this.props.car.color;
+    let size = this.props.car.size * 100;
+    let top = this.props.car.pos[0] * 100;
+    let right = this.props.car.pos[1] * 100;
+    let style;
+    if (this.props.car.direction === "up") {
+      style = { backgroundColor: color, height: size, width: 100, left: right, top: top};
+    } else {
+      style = { backgroundColor: color, height: 100, width: size, left: right, top: top };
+    }
     return (
-      <div className={`square car-${this.props.car.direction}-${this.props.car.size} pointer `} style={color} onClick={this.toggleSelected}>
+      <div color={this.props.car.color} className={`square-car pointer `} style={style} onClick={this.toggleSelected}>
         {this.showSelected()}
       </div>
     );
