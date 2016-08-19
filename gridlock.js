@@ -9,7 +9,13 @@ Board.prototype.generateBoard = function () {
   for (let i = 0; i < 6; i++) {
     this.grid.push([]);
     for (let j = 0; j < 6; j++) {
-      this.grid[i].push('-');
+      if (i === 2 && j === 5) {
+        this.grid[i].push('+');
+      } else if(i === 2 && j > 1) {
+        this.grid[i].push('>');
+      }else {
+        this.grid[i].push('-');
+      }
     }
   }
 };

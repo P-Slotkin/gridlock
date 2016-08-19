@@ -16,7 +16,6 @@ const ReactCar = React.createClass({
   // },
 
   toggleOff(e){
-    console.log(e.target.attributes.color);
     if (this.state.selected && !e.target.attributes.color) {
       return this.setState({ selected: false });
     } else if (this.state.selected && e.target.attributes.color.nodeValue !== this.props.car.color) {
@@ -73,9 +72,11 @@ const ReactCar = React.createClass({
     let position = this.props.pos;
     let size = this.props.size;
     if (this.inBounds(position[0] + size) &&
-        (this.props.board.grid[position[0] + size][position[1]] === '-')) {
-      return (<div className={`downarrow${size}`}>
-        <div className={`pointer downarrow${size}-image`}> <img  onClick={this.forward} src='../images/arrowdown.jpg' /> </div>
+        (this.props.board.grid[position[0] + size][position[1]] === '-' ||
+        this.props.board.grid[position[0] + size][position[1]] === '+' ||
+        this.props.board.grid[position[0] + size][position[1]] === '>')) {
+      return (<div className={`downarrow${size} transparent`}>
+        <div className={`pointer downarrow${size}-image`}> <img className='pulsebottom animated'  onClick={this.forward} src='../images/arrowdown.jpg' /> </div>
       </div>);
     }
   },
@@ -84,9 +85,11 @@ const ReactCar = React.createClass({
     let position = this.props.car.pos;
     let size = this.props.size;
     if (this.inBounds(position[0] - 1) &&
-      this.props.board.grid[position[0] - 1][position[1]] === '-') {
-      return (<div className={`uparrow`}>
-        <img className={`pointer uparrow`} onClick={this.backward} src='../images/arrowup.jpg' />
+      (this.props.board.grid[position[0] - 1][position[1]] === '-' ||
+      this.props.board.grid[position[0] - 1][position[1]] === '+' ||
+      this.props.board.grid[position[0] - 1][position[1]] === '>')) {
+      return (<div className={`uparrow transparent`}>
+        <img className={`pointer uparrow pulse animated`} onClick={this.backward} src='../images/arrowup.jpg' />
       </div>);
     }
   },
@@ -95,9 +98,11 @@ const ReactCar = React.createClass({
     let position = this.props.car.pos;
     let size = this.props.size;
     if (this.inBounds(position[1] + size) &&
-        this.props.board.grid[position[0]][position[1] + size] === '-') {
-      return (<div className={`rightarrow${this.props.size} pointer`}>
-        <img className={`pointer rightarrow${size}-image`} onClick={this.forward} src='../images/arrowright.jpg' />
+        (this.props.board.grid[position[0]][position[1] + size] === '-' ||
+        this.props.board.grid[position[0]][position[1] + size] === '+' ||
+        this.props.board.grid[position[0]][position[1] + size] === '>')) {
+      return (<div className={`rightarrow${this.props.size} pointer transparent`}>
+        <img className={`pointer rightarrow${size}-image pulse animated`} onClick={this.forward} src='../images/arrowright.jpg' />
       </div>);
     }
   },
@@ -106,9 +111,11 @@ const ReactCar = React.createClass({
     let position = this.props.car.pos;
     let size = this.props.size;
     if (this.inBounds(position[1] - 1) &&
-        this.props.board.grid[position[0]][position[1] - 1] === '-') {
-      return (<div className={`leftarrow pointer`}>
-        <img className='pointer leftarrow' onClick={this.backward} src='../images/arrowleft.jpg' />
+        (this.props.board.grid[position[0]][position[1] - 1] === '-' ||
+        this.props.board.grid[position[0]][position[1] - 1] === '+' ||
+        this.props.board.grid[position[0]][position[1] - 1] === '>')) {
+      return (<div className={`leftarrow pointer transparent`}>
+        <img className='pointer leftarrow pulse animated' onClick={this.backward} src='../images/arrowleft.jpg' />
       </div>);
     }
   },

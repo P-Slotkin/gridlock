@@ -1,10 +1,25 @@
+.header-top {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-top h1 {
+  font-family: Courier New;
+  font-weight: 600;
+  font-size: 80px;
+  letter-spacing: 20px;
+  margin-bottom: 0px;
+}
+
 .game-container {
   background-color: #fafafa;
   display: inline-block;
   position: relative;
   width: 600px;
   height: 600px;
-  border: 1px solid rgba(0, 0, 0, .3);
+  border-left: 2px dashed rgba(0, 0, 0, 0.3);
+  border-bottom: 2px dashed rgba(0, 0, 0, 0.3);
 }
 
 .game-outline {
@@ -26,7 +41,8 @@
   float:left;
   width: 98px;
   height: 98px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-right: 2px dashed rgba(0, 0, 0, 0.3);
+  border-top: 2px dashed rgba(0, 0, 0, 0.3);
 }
 
 .pointer:hover {
@@ -34,17 +50,17 @@
 }
 
 .button-headers {
-  padding-top: 32px;
   height: 75px;
   width: 600px;
-  font-family: helvetica;
-  font-size: 60px;
+  font-weight: bold;
+  font-family: Courier New;
+  font-size: 70px;
   color: #1C30CE;
 }
 
 .level-head {
-  padding-top: 8px;
-  padding-left: 18px;
+  padding-top: 0px;
+  padding-left: 12px;
 }
 
 .button-container {
@@ -56,12 +72,17 @@
 .button-left h3 {
   margin: 12px;
   margin-top: 6px;
-  font-size: 50px;
+  font-family: Courier New;
+  font-size: 60px;
   color: red;
 }
 
 .button-left h4 {
   margin: 12px;
+  margin-top: 6px;
+  font-family: Courier New;
+  font-size: 60px;
+  color: red;
 }
 
 .button-left {
@@ -72,6 +93,27 @@
 .button-left img {
   height: 75px;
   width: auto;
+}
+
+.square img {
+  height: 99px;
+  width: 99px;
+  opacity: .2;
+}
+
+.empty-winner {
+  border-right: 1px solid #ffffff !important;
+}
+
+.move-counter {
+  margin-left: 56px !important;
+}
+
+.blue {
+  margin-top: -4px !important;
+  margin-left: 2px !important;
+  color: #1C30CE !important;
+  font-size: 70px !important;
 }
 
 .button-right {
@@ -87,8 +129,8 @@
   transition: transform .8s ease-in-out;
 }
 .restart img:hover {
-  -webkit-transform: rotate(360deg);
-  transform: rotate(360deg);
+  -webkit-transform: rotate(-360deg);
+  transform: rotate(-360deg);
 }
 
 .next img{
@@ -148,28 +190,17 @@
 
 .square-car {
   position: absolute;
+  border-radius: 20px;
 }
 
-.downarrow3 img {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  padding-left: 10px;
-  margin-top: 304px;
-}
 
-.downarrow3 {
-  width: 98px;
-  height: 400px;
-  z-index: 3;
-}
 
 .downarrow2 img {
   position: absolute;
   width: 80px;
   height: 80px;
   padding-left: 10px;
-  margin-top: 204px;
+  margin-top: 210px;
 }
 
 .downarrow2 {
@@ -197,7 +228,7 @@
   width: 80px;
   height: 80px;
   padding-top: 10px;
-  margin-left: 304px;
+  margin-left: 310px;
 }
 
 .rightarrow3 {
@@ -211,12 +242,25 @@
   width: 80px;
   height: 80px;
   padding-top: 10px;
-  margin-left: 204px;
+  margin-left: 210px;
 }
 
 .rightarrow2 {
   height: 100px;
   width: 300px;
+  z-index: 3;
+}
+
+.downarrow3 img {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  padding-left: 10px;
+  margin-top: 310px;
+}
+.downarrow3 {
+  width: 100px;
+  height: 400px !important;;
   z-index: 3;
 }
 
@@ -232,4 +276,43 @@
   width: 98px;
   height: 98px;
   border: 0px !important;
+}
+
+.animated {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes pulse {
+    0% { -webkit-transform: scale(1); }
+    50% { -webkit-transform: scale(1.2); }
+    100% { -webkit-transform: scale(1); }
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+.pulse {
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+}
+
+@-webkit-keyframes pulsebottom {
+    0% { -webkit-transform: scale(1); }
+    50% { -webkit-transform: scale(1.2); }
+    100% { -webkit-transform: scale(1); }
+}
+@keyframes pulsebottom {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.pulsebottom {
+    -webkit-animation-name: pulsebottom;
+    animation-name: pulsebottom;
 }

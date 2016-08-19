@@ -56,6 +56,10 @@ const Game = React.createClass({
       return row.map((space) => {
         if (space === '-') {
           return <div className='square empty'/>;
+        } else if (space === '>') {
+          return <div className='square empty'><img src='../images/directarrow.jpg'/></div>;
+        } else if (space === '+') {
+          return <div className='square empty-winner'><img src='../images/directarrow.jpg'/></div>;
         }
       });
     });
@@ -95,7 +99,7 @@ const Game = React.createClass({
       <div className='game-outline'>
         <div className='page-container'>
           <div className='button-headers'>
-            <div className='button-headers level-head'>LEVEL</div>
+            <div className='button-headers level-head'>LEVEL|MOVES</div>
           </div>
           <div className='button-container'>
             <div className='button-left previous pointer' onClick={this.previousLevel}><img src="../images/pointerleft.jpg"/></div>
@@ -103,6 +107,9 @@ const Game = React.createClass({
               <h3>{this.state.level}</h3>
             </div>
             <div className='button-left next pointer' onClick={this.nextLevel}><img src="../images/pointerright.jpg"/></div>
+            <div className='button-left'>
+              <h4 className='blue'>|</h4>
+            </div>
             <div className='button-left move-counter'>
               <h4>{this.moveCounter}</h4>
             </div>

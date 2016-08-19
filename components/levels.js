@@ -11,7 +11,17 @@ module.exports = {
     [ "blue", 3, [4, 0], "right"],
     [ "orange", 3, [5, 0], "right"],
     [ "pink", 2, [3, 4], "up"],
-    [ "teal", 2, [1, 4], "right"]]
+    [ "teal", 2, [1, 4], "right"]],
+  4: [[ "red", 2, [2, 2], "right"],
+    [ "orange", 3, [0, 4], "up"],
+    [ "blue", 3, [0, 1], "right"],
+    [ "pink", 2, [0, 0], "up"],
+    [ "yellow", 2, [2, 0], "up"],
+    [ "gray", 3, [4, 0], "right"],
+    [ "purple", 2, [3, 3], "up"],
+    [ "black", 2, [3, 4], "right"],
+    [ "green", 2, [5, 3], "right"],
+    [ "lightblue", 2, [5, 0], "right"]]
 };
 
 // module.exports {
