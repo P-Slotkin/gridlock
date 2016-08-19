@@ -7,9 +7,9 @@ const ReactCar = React.createClass({
     return({ selected: false });
   },
 
-  componentDidMount() {
-    this.token = window.addEventListener('click', this.toggleOff);
-  },
+  // componentDidMount() {
+  //   this.token = window.addEventListener('click', this.toggleOff);
+  // },
 
   // componentWillUnmount() {
   //   this.token.remove();
@@ -47,7 +47,7 @@ const ReactCar = React.createClass({
 
   forward(){
     const car = this.props.car;
-    this.token.remove();
+    // this.token.remove();
     if (this.props.dir === "up") {
       car.pos = [this.props.pos[0] + 1, this.props.pos[1]];
       this.props.carMoved(car.color, car);
@@ -59,7 +59,7 @@ const ReactCar = React.createClass({
 
   backward(){
     const car = this.props.car;
-    this.token.remove();
+    // this.token.remove();
     if (this.props.dir === "up" ) {
       car.pos = [this.props.pos[0] - 1, this.props.pos[1]];
       this.props.carMoved(car.color, car);
