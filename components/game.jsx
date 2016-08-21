@@ -6,6 +6,7 @@ const ReactCar = require('./car.jsx');
 const Optimal = require('./optimal.js');
 
 const Game = React.createClass({
+
   getInitialState() {
     let cars = this.makeCars(Levels[1]);
     const carBoard = new Gridlock(cars);
@@ -20,7 +21,9 @@ const Game = React.createClass({
 
   restartLevel() {
     let modal = document.getElementById('victory');
+    let finishedModal = document.getElementById('finished');
     modal.style.display = "none";
+    finishedModal.style.display = "none";
     this.moveCounter = 0;
     let cars = this.makeCars(Levels[this.state.level]);
     this.setState({ carBoard: new Gridlock(cars), cars: cars });
@@ -98,11 +101,21 @@ const Game = React.createClass({
   },
 
   showVictory(){
-    let modal = document.getElementById('victory');
-    modal.style.display = "block";
-    modal.onclick = function(e) {
-      if (e.target == modal) {
-        e.stopPropagation();
+    if (this.state.level < 7) {
+      let modal = document.getElementById('victory');
+      modal.style.display = "block";
+      modal.onclick = function(e) {
+        if (e.target == modal) {
+          e.stopPropagation();
+        }
+      }
+    } else {
+      let modal = document.getElementById('finished');
+      modal.style.display = "block";
+      modal.onclick = function(e) {
+        if (e.target == modal) {
+          e.stopPropagation();
+        }
       }
     }
   },
@@ -148,6 +161,35 @@ const Game = React.createClass({
               </div>
               <div className='modal-buttons close'>
                 <div className='modal-button-next pointer' onClick={this.nextLevel}><img src="../images/modalnext.jpg"/></div>
+                <div className='modal-button-restart restart pointer' onClick={this.restartLevel}><img src="../images/redo.jpg"/></div>
+              </div>
+            </div>
+          </div>
+          <div id="finished" className="finished">
+            <div className="modal-content">
+              <div className='star-container'>
+                {this.showStars()}
+              </div>
+              <h1>Finished!</h1>
+              <div className='modal-list-box'>
+                <div className='modal-list-left'>
+                  <p className="pleft">Level</p>
+                  <p className="pleft">Moves</p>
+                  <p className="pleft">Optimal</p>
+                </div>
+                <div className='modal-list-center'>
+                  <p>|</p>
+                  <p>|</p>
+                  <p>|</p>
+                </div>
+                <div className='modal-list-right'>
+                  <p className="redp">{this.state.level}</p>
+                  <p id='check' className="redp">{this.moveCounter}</p>
+                  <p className="redp">{Optimal[this.state.level]}</p>
+                </div>
+              </div>
+              <div className='modal-buttons close'>
+                <p>More levels coming soon!</p>
                 <div className='modal-button-restart restart pointer' onClick={this.restartLevel}><img src="../images/redo.jpg"/></div>
               </div>
             </div>
