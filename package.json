@@ -9,9 +9,9 @@
     "postinstall": "./node_modules/.bin/webpack"
   },
   "engines": {
-  "node": "6.2.1",
-  "npm": "3.9.3"
-},
+    "node": "6.2.1",
+    "npm": "3.9.3"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
