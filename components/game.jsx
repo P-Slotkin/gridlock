@@ -3,6 +3,7 @@ const Car = require('../car.js');
 const React = require('react');
 const Levels = require('./levels.js');
 const ReactCar = require('./car.jsx');
+const Optimal = require('./optimal.js');
 
 const Game = React.createClass({
   getInitialState() {
@@ -18,12 +19,16 @@ const Game = React.createClass({
   },
 
   restartLevel() {
+    let modal = document.getElementById('victory');
+    modal.style.display = "none";
     this.moveCounter = 0;
     let cars = this.makeCars(Levels[this.state.level]);
     this.setState({ carBoard: new Gridlock(cars), cars: cars });
   },
 
   nextLevel() {
+    let modal = document.getElementById('victory');
+    modal.style.display = "none";
     this.moveCounter = 0;
     let nextLevel = this.state.level + 1;
     let cars = this.makeCars(Levels[nextLevel]);
@@ -82,6 +87,26 @@ const Game = React.createClass({
     );
   },
 
+  showStars(){
+    if (this.moveCounter === Optimal[this.state.level]) {
+      return (<img src='../images/3stars.jpg' />);
+    } else if (this.moveCounter - Optimal[this.state.level] <= 4) {
+      return (<img src='../images/2stars.jpg' />);
+    } else {
+      return (<img src='../images/1stars.jpg' />);
+    }
+  },
+
+  showVictory(){
+    let modal = document.getElementById('victory');
+    modal.style.display = "block";
+    modal.onclick = function(e) {
+      if (e.target == modal) {
+        e.stopPropagation();
+      }
+    }
+  },
+
   updateBoard() {
     if (this.state.cars.length === 0) {
       return;
@@ -89,7 +114,7 @@ const Game = React.createClass({
       let newBoard = new Gridlock(this.state.cars);
       this.setState({ carBoard: newBoard });
       if (newBoard.wonLevel()){
-        this.nextLevel();
+        this.showVictory();
       }
     }
   },
@@ -98,6 +123,35 @@ const Game = React.createClass({
     return (
       <div className='game-outline'>
         <div className='page-container'>
+          <div id="victory" className="victory">
+            <div className="modal-content">
+              <div className='star-container'>
+                {this.showStars()}
+              </div>
+              <h1>Complete!</h1>
+              <div className='modal-list-box'>
+                <div className='modal-list-left'>
+                  <p className="pleft">Level</p>
+                  <p className="pleft">Moves</p>
+                  <p className="pleft">Optimal</p>
+                </div>
+                <div className='modal-list-center'>
+                  <p>|</p>
+                  <p>|</p>
+                  <p>|</p>
+                </div>
+                <div className='modal-list-right'>
+                  <p className="redp">{this.state.level}</p>
+                  <p id='check' className="redp">{this.moveCounter}</p>
+                  <p className="redp">{Optimal[this.state.level]}</p>
+                </div>
+              </div>
+              <div className='modal-buttons close'>
+                <div className='modal-button-next pointer' onClick={this.nextLevel}><img src="../images/modalnext.jpg"/></div>
+                <div className='modal-button-restart restart pointer' onClick={this.restartLevel}><img src="../images/redo.jpg"/></div>
+              </div>
+            </div>
+          </div>
           <div className='button-headers'>
             <div className='button-headers level-head'>LEVEL|MOVES</div>
           </div>
