@@ -93,7 +93,7 @@ const Game = React.createClass({
   showStars(){
     if (this.moveCounter === Optimal[this.state.level]) {
       return (<img src='../images/3stars.jpg' />);
-    } else if (this.moveCounter - Optimal[this.state.level] <= 4) {
+    } else if ((this.moveCounter - Optimal[this.state.level]) * 3 <= Optimal[this.state.level]) {
       return (<img src='../images/2stars.jpg' />);
     } else {
       return (<img src='../images/1stars.jpg' />);
@@ -101,14 +101,14 @@ const Game = React.createClass({
   },
 
   showVictory(){
-    if (this.state.level < 7) {
+    if (this.state.level < 12) {
       let modal = document.getElementById('victory');
       modal.style.display = "block";
       modal.onclick = function(e) {
         if (e.target == modal) {
           e.stopPropagation();
         }
-      }
+      };
     } else {
       let modal = document.getElementById('finished');
       modal.style.display = "block";
@@ -116,7 +116,7 @@ const Game = React.createClass({
         if (e.target == modal) {
           e.stopPropagation();
         }
-      }
+      };
     }
   },
 
