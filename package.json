@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --watch",
     "postinstall": "./node_modules/.bin/webpack",
-    "start": "runserver 0.0.0.0:8000"
+    "start": ""
   },
   "engines": {
     "node": "6.2.1",
