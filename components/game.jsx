@@ -90,6 +90,15 @@ const Game = React.createClass({
     );
   },
 
+  showInstructions(e){
+    let modal = document.getElementById('instructions');
+    modal.style.display = "block";
+    modal.onclick = function(e) {
+        modal.style.display = "none";
+        e.stopPropagation();
+    };
+  },
+
   showStars(){
     if (this.moveCounter === Optimal[this.state.level]) {
       return (<img src='../images/3stars.jpg' />);
@@ -136,6 +145,14 @@ const Game = React.createClass({
     return (
       <div className='game-outline'>
         <div className='page-container'>
+          <div id="instructions" className="instructions">
+            <div className="modal-content shorter">
+              <h1>How To Play!</h1>
+              <div className='modal-list-box'>
+                <h6>Select cars and then a direction to move them. Try to move the red car all the way to the right!</h6>
+              </div>
+            </div>
+          </div>
           <div id="victory" className="victory">
             <div className="modal-content">
               <div className='star-container'>
@@ -210,11 +227,17 @@ const Game = React.createClass({
               <h4>{this.moveCounter}</h4>
             </div>
             <div className='button-right restart pointer' onClick={this.restartLevel}><img src="../images/redo.jpg"/></div>
+            <div className='button-right instruct pointer' onClick={this.showInstructions}><img src="../images/question.jpg"/></div>
           </div>
           <div className='game-container'>
             {this.renderBackGroundBoard()}
           </div>
           {this.renderCarBoard()}
+          <div className='media-buttons'>
+            <div className='button-left media pointer'><a href="https://www.linkedin.com/in/peter-slotkin-183738126?trk=nav_responsive_tab_profile"><img src="../images/linked.jpg"/></a></div>
+            <div className='button-left media pointer'><a href="https://github.com/P-Slotkin"><img src="../images/git.jpg"/></a></div>
+            <div className='button-right media pointer'><a href="http://peterslotkin.me/"><img src="../images/portfolio.jpg"/></a></div>
+          </div>
         </div>
       </div>
     );

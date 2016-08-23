@@ -98,12 +98,12 @@ module.exports = {
     [ "teal", 2, [3, 1], "right"],
     [ "orange", 2, [4, 4], "up"]],
   12: [[ "red", 2, [2, 1], "right"],
-  [ "blue", 2, [0, 0], "up"],
-  [ "purple", 3, [0, 3], "up"],
-  [ "gray", 2, [0, 4], "right"],
-  [ "green", 2, [1, 4], "up"],
-  [ "black", 2, [3, 2], "up"],
-  [ "lightblue", 3, [3, 5], "up"],
-  [ "pink", 2, [4, 1], "up"],
-  [ "teal", 2, [4, 3], "right"]]
+    [ "blue", 2, [0, 0], "up"],
+    [ "purple", 3, [0, 3], "up"],
+    [ "gray", 2, [0, 4], "right"],
+    [ "green", 2, [1, 4], "up"],
+    [ "black", 2, [3, 2], "up"],
+    [ "lightblue", 3, [3, 5], "up"],
+    [ "pink", 2, [4, 1], "up"],
+    [ "teal", 2, [4, 3], "right"]]
 };
