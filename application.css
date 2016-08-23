@@ -107,8 +107,9 @@
   border-right: 1px solid #ffffff !important;
 }
 
-.move-counter {
-  margin-left: 56px !important;
+.move-counter h4{
+  width: 96px !important;
+  text-align: right;
 }
 
 .blue {
