@@ -236,7 +236,7 @@ const Game = React.createClass({
           <div className='media-buttons'>
             <div className='button-left media pointer'><a href="https://www.linkedin.com/in/peter-slotkin-183738126?trk=nav_responsive_tab_profile"><img src="../images/linked.jpg"/></a></div>
             <div className='button-left media pointer'><a href="https://github.com/P-Slotkin"><img src="../images/git.jpg"/></a></div>
-            <div className='button-right media pointer'><a href="http://peterslotkin.me/"><img src="../images/portfolio.jpg"/></a></div>
+            <div className='button-right media pointer'><a href="http://www.peterslotkin.me/"><img src="../images/portfolio.jpg"/></a></div>
           </div>
         </div>
       </div>
