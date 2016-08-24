@@ -110,7 +110,7 @@ const Game = React.createClass({
   },
 
   showVictory(){
-    if (this.state.level < 12) {
+    if (this.state.level < 20) {
       let modal = document.getElementById('victory');
       modal.style.display = "block";
       modal.onclick = function(e) {
@@ -147,7 +147,7 @@ const Game = React.createClass({
         <div className='page-container'>
           <div id="instructions" className="instructions">
             <div className="modal-content shorter">
-              <h1>How To Play!</h1>
+              <h1>How To Play:</h1>
               <div className='modal-list-box'>
                 <h6>Select cars and then a direction to move them. Try to move the red car all the way to the right!</h6>
               </div>
