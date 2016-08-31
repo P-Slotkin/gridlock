@@ -12,7 +12,7 @@ const Game = React.createClass({
     const carBoard = new Gridlock(cars);
     const backGroundBoard = new Gridlock([]);
     this.moveCounter = 0;
-    return ({ level: 1, carBoard: carBoard, board: backGroundBoard, cars: cars });
+    return ({ level: 1, carBoard: carBoard, board: backGroundBoard, cars: cars, start: true });
   },
 
   makeCars(blueprint) {
@@ -93,10 +93,12 @@ const Game = React.createClass({
   showInstructions(e){
     let modal = document.getElementById('instructions');
     modal.style.display = "block";
-    modal.onclick = function(e) {
-        modal.style.display = "none";
-        e.stopPropagation();
-    };
+  },
+
+  closeInstructions(e){
+    let modal = document.getElementById('instructions');
+    modal.style.display = "none";
+    this.setState({ start: false });
   },
 
   showStars(){
@@ -142,10 +144,13 @@ const Game = React.createClass({
   },
 
   render() {
+    if (this.state.start && document.getElementById('finished')) {
+      this.showInstructions();
+    }
     return (
       <div className='game-outline'>
         <div className='page-container'>
-          <div id="instructions" className="instructions">
+          <div id="instructions" className="instructions" onClick={this.closeInstructions}>
             <div className="modal-content shorter">
               <h1>How To Play:</h1>
               <div className='modal-list-box'>
@@ -233,11 +238,6 @@ const Game = React.createClass({
             {this.renderBackGroundBoard()}
           </div>
           {this.renderCarBoard()}
-          <div className='media-buttons'>
-            <div className='button-left media pointer'><a href="https://www.linkedin.com/in/peter-slotkin-183738126?trk=nav_responsive_tab_profile"><img src="../images/linked.jpg"/></a></div>
-            <div className='button-left media pointer'><a href="https://github.com/P-Slotkin"><img src="../images/git.jpg"/></a></div>
-            <div className='button-right media pointer'><a href="http://www.peterslotkin.me/"><img src="../images/portfolio.jpg"/></a></div>
-          </div>
         </div>
       </div>
     );
